@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.netology.ticket.Ticket;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class TicketManagerTest {
 
@@ -12,10 +13,10 @@ public class TicketManagerTest {
     Ticket item2 = new Ticket(2, 22000, "SVO", "HRG",320);
     Ticket item3 = new Ticket(3, 40000, "SVO", "VVO",510);
     Ticket item4 = new Ticket(4, 18000, "SVO", "AYT",280);
-    Ticket item5 = new Ticket(5, 10000, "SVO", "AER",245);
-    Ticket item6 = new Ticket(6, 10500, "SVO", "AER",245);
-    Ticket item7 = new Ticket(7, 9800, "SVO", "AER",245);
-    Ticket item8 = new Ticket(8, 11000, "SVO", "AER",245);
+    Ticket item5 = new Ticket(5, 10000, "SVO", "AER",240);
+    Ticket item6 = new Ticket(6, 10500, "SVO", "AER",255);
+    Ticket item7 = new Ticket(7, 9800, "SVO", "AER",248);
+    Ticket item8 = new Ticket(8, 11000, "SVO", "AER",235);
 
     @Test
     public void shouldAddAndRemoveTicketsFromRepository () {
@@ -107,4 +108,25 @@ public class TicketManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldFindTicketByTwoAirportsAndSortThemByComparator () {
+        TicketManager manager = new TicketManager(new TicketRepository ());
+        TicketByTravelTimeComparator travelTimeComparator = new TicketByTravelTimeComparator();
+        manager.addNewTicket(item1);
+        manager.addNewTicket(item2);
+        manager.addNewTicket(item3);
+        manager.addNewTicket(item4);
+        manager.addNewTicket(item5);
+        manager.addNewTicket(item6);
+        manager.addNewTicket(item7);
+        manager.addNewTicket(item8);
+
+        Ticket[] expected = {item8, item5, item7, item6};
+        Ticket[] actual = manager.findAll("SVO", "AER");
+                Arrays.sort(actual, travelTimeComparator);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }
