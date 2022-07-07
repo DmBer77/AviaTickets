@@ -6,7 +6,7 @@ public class TicketRepository {
 
     private Ticket[] items = new Ticket[0];
 
-    public void addNewTicket (Ticket newTicket) {
+    public void addNewTicket(Ticket newTicket) {
         Ticket[] tmp = new Ticket[items.length + 1];
         for (int i = 0; i < items.length; i++) {
             tmp[i] = items[i];
@@ -15,14 +15,14 @@ public class TicketRepository {
         items = tmp;
     }
 
-    public void addNewTicketButCheckIfSimilarTicketAlreadyAdded (Ticket newTicket) {
-        Ticket draft_1 = findById (newTicket.getId());
+    public void addNewTicketButCheckIfSimilarTicketAlreadyAdded(Ticket newTicket) {
+        Ticket draft_1 = findById(newTicket.getId());
         if (draft_1 != null) {
             throw new AlreadyExistsException(
                     "Element with id: " + newTicket.getId() + " already exists"
             );
         }
-        Ticket [] tmp = new Ticket [items.length + 1];
+        Ticket[] tmp = new Ticket[items.length + 1];
         for (int i = 0; i < items.length; i++) {
             tmp[i] = items[i];
         }

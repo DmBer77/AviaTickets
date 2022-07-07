@@ -15,11 +15,11 @@ public class TicketManager {
     }
 
     public void addNewTicket(Ticket newTicket) {
-        repository.addNewTicket (newTicket);
+        repository.addNewTicket(newTicket);
     }
 
     public void addNewTicketButCheckIfSimilarTicketAlreadyAdded(Ticket newTicket) {
-        repository.addNewTicketButCheckIfSimilarTicketAlreadyAdded (newTicket);
+        repository.addNewTicketButCheckIfSimilarTicketAlreadyAdded(newTicket);
     }
 
     public void removeTicketById(int id) {
@@ -30,7 +30,7 @@ public class TicketManager {
         return repository.getSavedTickets();
     }
 
-    public Ticket [] findAll(String departureAirport, String arrivalAirport) {
+    public Ticket[] findAll(String departureAirport, String arrivalAirport) {
         Ticket[] result = new Ticket[0];
         for (Ticket ticket : repository.getSavedTickets()) {
             if (matches(ticket, departureAirport, arrivalAirport)) {
