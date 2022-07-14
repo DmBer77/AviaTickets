@@ -59,64 +59,8 @@ public class TicketManagerTest {
     }
 
     @Test
-    public void shouldFindTicketByTwoAirportsAndSortThem() {
-        TicketManager manager = new TicketManager(new TicketRepository());
-        manager.addNewTicket(item1);
-        manager.addNewTicket(item2);
-        manager.addNewTicket(item3);
-        manager.addNewTicket(item4);
-        manager.addNewTicket(item5);
-        manager.addNewTicket(item6);
-        manager.addNewTicket(item7);
-        manager.addNewTicket(item8);
-
-        Ticket[] expected = {item7, item5, item6, item8};
-        Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual);
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindTicketByTwoAirportsAndSortThemIfNoItemsInRepository() {
-        TicketManager manager = new TicketManager(new TicketRepository());
-
-
-        Ticket[] expected = {};
-        Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual);
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindTicketByTwoAirportsAndSortThemIfOneItemInRepository() {
-        TicketManager manager = new TicketManager(new TicketRepository());
-        manager.addNewTicket(item8);
-
-        Ticket[] expected = {item8};
-        Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual);
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldFindTicketByTwoAirportsAndSortThemIfOneItemInRepositoryButDoesNotQualify() {
-        TicketManager manager = new TicketManager(new TicketRepository());
-        manager.addNewTicket(item1);
-
-        Ticket[] expected = {};
-        Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual);
-
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
     public void shouldFindTicketByTwoAirportsAndSortThemByComparator() {
         TicketManager manager = new TicketManager(new TicketRepository());
-        TicketByTravelTimeComparator travelTimeComparator = new TicketByTravelTimeComparator();
         manager.addNewTicket(item1);
         manager.addNewTicket(item2);
         manager.addNewTicket(item3);
@@ -128,7 +72,6 @@ public class TicketManagerTest {
 
         Ticket[] expected = {item8, item5, item7, item6};
         Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual, travelTimeComparator);
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -136,7 +79,6 @@ public class TicketManagerTest {
     @Test
     public void shouldFindTicketByTwoAirportsAndSortThemByComparatorIfInRepositoryPresentSimilarItems() {
         TicketManager manager = new TicketManager(new TicketRepository());
-        TicketByTravelTimeComparator travelTimeComparator = new TicketByTravelTimeComparator();
         manager.addNewTicket(item1);
         manager.addNewTicket(item2);
         manager.addNewTicket(item3);
@@ -150,7 +92,37 @@ public class TicketManagerTest {
 
         Ticket[] expected = {item8, item9, item5, item7, item10, item6};
         Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual, travelTimeComparator);
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindTicketByTwoAirportsAndSortThemByComparatorIfNoItemsInRepository() {
+        TicketManager manager = new TicketManager(new TicketRepository());
+
+        Ticket[] expected = {};
+        Ticket[] actual = manager.findAll("SVO", "AER");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindTicketByTwoAirportsAndSortThemByComparatorIfOneItemInRepository() {
+        TicketManager manager = new TicketManager(new TicketRepository());
+        manager.addNewTicket(item8);
+
+        Ticket[] expected = {item8};
+        Ticket[] actual = manager.findAll("SVO", "AER");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void shouldFindTicketByTwoAirportsAndSortThemByComparatorIfOneItemInRepositoryButDoesNotQualify() {
+        TicketManager manager = new TicketManager(new TicketRepository());
+        manager.addNewTicket(item1);
+
+        Ticket[] expected = {};
+        Ticket[] actual = manager.findAll("SVO", "AER");
 
         Assertions.assertArrayEquals(expected, actual);
     }

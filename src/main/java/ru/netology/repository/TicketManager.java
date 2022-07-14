@@ -32,6 +32,7 @@ public class TicketManager {
 
     public Ticket[] findAll(String departureAirport, String arrivalAirport) {
         Ticket[] result = new Ticket[0];
+        TicketByTravelTimeComparator comparator = new TicketByTravelTimeComparator();
         for (Ticket ticket : repository.getSavedTickets()) {
             if (matches(ticket, departureAirport, arrivalAirport)) {
                 Ticket[] tmp = new Ticket[result.length + 1];
@@ -40,6 +41,7 @@ public class TicketManager {
                 }
                 tmp[tmp.length - 1] = ticket;
                 result = tmp;
+                Arrays.sort(result, comparator);
             }
         }
         return result;
