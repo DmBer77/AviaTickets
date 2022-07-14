@@ -2,6 +2,8 @@ package ru.netology.repository;
 
 import ru.netology.ticket.Ticket;
 
+import java.util.Arrays;
+
 public class TicketManager {
 
     private final TicketRepository repository;
@@ -36,6 +38,7 @@ public class TicketManager {
                 }
                 tmp[tmp.length - 1] = ticket;
                 result = tmp;
+                Arrays.sort(result);
             }
         }
         return result;

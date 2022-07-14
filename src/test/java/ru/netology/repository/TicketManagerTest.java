@@ -69,7 +69,6 @@ public class TicketManagerTest {
 
         Ticket[] expected = {item7, item5, item6, item8};
         Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual);
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -80,7 +79,6 @@ public class TicketManagerTest {
 
         Ticket[] expected = {};
         Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual);
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -91,7 +89,6 @@ public class TicketManagerTest {
 
         Ticket[] expected = {item8};
         Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual);
 
         Assertions.assertArrayEquals(expected, actual);
     }
@@ -103,7 +100,6 @@ public class TicketManagerTest {
 
         Ticket[] expected = {};
         Ticket[] actual = manager.findAll("SVO", "AER");
-        Arrays.sort(actual);
 
         Assertions.assertArrayEquals(expected, actual);
     }
