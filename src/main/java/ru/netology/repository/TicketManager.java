@@ -1,10 +1,8 @@
 package ru.netology.repository;
 
 import ru.netology.ticket.Ticket;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.Comparator;
+
 
 public class TicketManager {
 

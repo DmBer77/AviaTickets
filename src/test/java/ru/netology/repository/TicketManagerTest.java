@@ -116,6 +116,7 @@ public class TicketManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
     @Test
     public void shouldFindTicketByTwoAirportsAndSortThemByComparatorIfOneItemInRepositoryButDoesNotQualify() {
         TicketManager manager = new TicketManager(new TicketRepository());
